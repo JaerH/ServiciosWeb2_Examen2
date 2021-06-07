@@ -1,83 +1,76 @@
 class Post {
-  constructor () {
-      // TODO inicializar firestore y settings
+  constructor() {
+    // TODO inicializar firestore y settings
 
-      this.db = firebase.firestore()
-
-     // const settings = { timestampsInSnapshot : true}
-      //this.db.settings(settings)
-
-
+    this.db = firebase.firestore();
   }
 
-  crearPost (uid, emailUser, titulo, descripcion, imagenLink, videoLink) {   
-        return this.db.collection('posts').add({
-            uid : uid,
-            autor : emailUser,
-            titulo : titulo,
-            descripcion : descripcion,
-            imagenLink : imagenLink,
-            videoLink : videoLink,
-           /* fecha : firebase.firestore.FieldValue.serverTimestamp()*/
-        })
-        .then( refDoc => {
-            console.log(`Id del post => ${refDoc.id}`);
-        })
-        .catch(error => {
-            console.error(`Error creando el post => ${error}`)
-        })
+  crearPost(uid, emailUser, titulo, descripcion, imagenLink, videoLink) {
+    return this.db
+      .collection("posts")
+      .add({
+        uid: uid,
+        autor: emailUser,
+        titulo: titulo,
+        descripcion: descripcion,
+        imagenLink: imagenLink,
+        videoLink: videoLink,
+        /* fecha : firebase.firestore.FieldValue.serverTimestamp()*/
+      })
+      .then((refDoc) => {
+        console.log(`Id del post => ${refDoc.id}`);
+      })
+      .catch((error) => {
+        console.error(`Error creando el post => ${error}`);
+      });
   }
 
-  consultarTodosPost () {
+  consultarTodosPost() {
+    this.db.collection(`posts`).onSnapshot((querySnapshot) => {
+      $("#posts").empty();
+      if (querySnapshot.empty) {
+        $("#posts").append(this.obtenerTemplatePostVacio());
+      } else {
+        querySnapshot.forEach((post) => {
+          let postHtml = this.obtenerPostTemplate(
+            post.data().autor,
+            post.data().titulo,
+            post.data().descripcion,
+            post.data().videoLink,
+            post.data().imagenLink
+            /*  Utilidad.obtenerFecha(post.data().fecha.toDate())*/
+          );
+          $("#posts").append(postHtml);
+        });
+      }
+    });
+  }
 
-    this.db.collection(`posts`).onSnapshot(querySnapshot => {
-        $('#posts').empty()
-        if (querySnapshot.empty){
-            $('#posts').append(this.obtenerTemplatePostVacio())
-        }else{
-            querySnapshot.forEach(post => {
-                let postHtml = this.obtenerPostTemplate(
-                    post.data().autor,
-                    post.data().titulo,
-                    post.data().descripcion,
-                    post.data().videoLink,
-                    post.data().imagenLink,
-                  /*  Utilidad.obtenerFecha(post.data().fecha.toDate())*/
-                    
-                )
-                $('#posts').append(postHtml)
-            })
+  consultarPostxUsuario(emailUser) {
+    this.db
+      .collection(`posts`)
+      .where("autor", "==", emailUser)
+      .onSnapshot((querySnapshot) => {
+        $("#posts").empty();
+        if (querySnapshot.empty) {
+          $("#posts").append(this.obtenerTemplatePostVacio());
+        } else {
+          querySnapshot.forEach((post) => {
+            let postHtml = this.obtenerPostTemplatexUsuario(
+              post.data().autor,
+              post.data().titulo,
+              post.data().descripcion,
+              post.data().videoLink,
+              post.data().imagenLink
+              /*    Utilidad.obtenerFecha(post.data().fecha.toDate())*/
+            );
+            $("#posts").append(postHtml);
+          });
         }
-    })
+      });
   }
 
-  consultarPostxUsuario (emailUser) {
-    this.db.collection(`posts`)
-    .where('autor' , '==' , emailUser)
-    .onSnapshot(querySnapshot => {
-        $('#posts').empty()
-        if (querySnapshot.empty){
-            $('#posts').append(this.obtenerTemplatePostVacio())
-        }else{
-            querySnapshot.forEach(post => {
-                let postHtml = this.obtenerPostTemplatexUsuario(
-                    post.data().autor,
-                    post.data().titulo,
-                    post.data().descripcion,
-                    post.data().videoLink,
-                    post.data().imagenLink,
-                /*    Utilidad.obtenerFecha(post.data().fecha.toDate())*/
-                    
-                )
-                $('#posts').append(postHtml)
-            })
-        }
-    })
-  }
-
-
-
-  obtenerTemplatePostVacio () {
+  obtenerTemplatePostVacio() {
     return `<article class="post">
       <div class="post-titulo">
           <h5>Crea el primer Post a la comunidad</h5>
@@ -102,10 +95,10 @@ class Post {
       </div>
       <div class="post-footer container">         
       </div>
-  </article>`
+  </article>`;
   }
 
-  obtenerPostTemplate (
+  obtenerPostTemplate(
     autor,
     titulo,
     descripcion,
@@ -114,44 +107,10 @@ class Post {
     fecha
   ) {
     if (imagenLink) {
-      return 
+      return;
     }
 
-    /*return `<article class="post">
-                <div class="post-titulo">
-                    <h5>${titulo}</h5>
-                </div>
-                <div class="post-calificacion">
-                    <a class="post-estrellita-llena" href="*"></a>
-                    <a class="post-estrellita-llena" href="*"></a>
-                    <a class="post-estrellita-llena" href="*"></a>
-                    <a class="post-estrellita-llena" href="*"></a>
-                    <a class="post-estrellita-vacia" href="*"></a>
-                </div>
-                <div class="post-video">
-                    <iframe type="text/html" width="500" height="385" src='${videoLink}'
-                        frameborder="0"></iframe>
-                    </figure>
-                </div>
-                <div class="post-videolink">
-                    Video
-                </div>
-                <div class="post-descripcion">
-                    <p>${descripcion}</p>
-                </div>
-                <div class="post-footer container">
-                    <div class="row">
-                        <div class="col m6">
-                            Fecha: ${fecha}
-                        </div>
-                        <div class="col m6">
-                            Autor: ${autor}
-                        </div>        
-                    </div>
-                </div>
-            </article>`*/
-            
-     return  ` <div class="col-md-6 content-main">
+    return ` <div class="col-md-6 content-main">
      <div class="content-sec">                
          <div class="portfolio-container">
              <div class="portfolio-details">
@@ -163,21 +122,20 @@ class Post {
                  </a>
              </div> 
              <div>
-                 <img  class="img-fluid img-content" src="assets/images/pexel3.jpg" alt="">
+                 <img  class="img-fluid img-content" src="assets/images/post.jpeg" alt="">
              </div>
              
          </div>
          <div>
              <h4>Mejorando la UI en la web</h4>
-             <p>${descripcion}/p>
+             <p>${descripcion}</p>
          </div>    
      </div>
  </div>
- `
-       
+ `;
   }
 
- /* `<div class="col-md-6" style="border: 3px black">
+  /* `<div class="col-md-6" style="border: 3px black">
      
   <div class="portfolio-container">
       <div class="portfolio-details">
@@ -203,12 +161,12 @@ class Post {
     videoLink,
     imagenLink,
     fecha
-   ) {
+  ) {
     if (imagenLink) {
-      return 
-    } 
+      return;
+    }
 
-    return  ` <div class="col-md-6 content-main">
+    return ` <div class="col-md-6 content-main">
     <div class="content-sec">                
         <div class="portfolio-container">
             <div class="portfolio-details">
@@ -237,13 +195,8 @@ class Post {
         
     </div>
 </div>
-`
-
+`;
   }
 
-
-  obtenerPostPersonalizado(){
-
-
-  }
+  obtenerPostPersonalizado() {}
 }

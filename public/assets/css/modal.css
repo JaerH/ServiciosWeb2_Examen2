@@ -317,6 +317,7 @@
   display: grid;
   gap: 1rem;
   z-index: 8000;
+  margin-left: 2rem;
 }
 .input-field {
   display: flex;
@@ -325,13 +326,24 @@
 .input-field input,
 .input-field textarea {
   border-style: none;
-  border: 0.1px solid #000;
+  border: 0.1px solid rgb(146, 146, 146);
+  padding: 10px;
+  outline: none;
+  resize: none;
+  border-radius: 5px;
 }
 .btn-crear-post {
-  display: inline-block;
-  background-color: #455a81;
+  display: block;
+  background-color: #5897d3;
+  text-align: center;
   color: #fff !important;
-  padding: 12px 24px;
-  border-radius: 0.5rem;
+  padding: 10px 24px;
+  border-radius: 0.2rem;
+  font-size: 17px;
   cursor: pointer;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+.btn-crear-post:hover {
+  background-color: #3b7bb8;
 }
