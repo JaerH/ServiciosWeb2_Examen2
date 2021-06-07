@@ -10,8 +10,7 @@ class Post {
 
   }
 
-  crearPost (uid, emailUser, titulo, descripcion, imagenLink, videoLink) {
-
+  crearPost (uid, emailUser, titulo, descripcion, imagenLink, videoLink) {   
         return this.db.collection('posts').add({
             uid : uid,
             autor : emailUser,
@@ -19,7 +18,7 @@ class Post {
             descripcion : descripcion,
             imagenLink : imagenLink,
             videoLink : videoLink,
-            fecha : firebase.firestore.FieldValue.serverTimestamp()
+           /* fecha : firebase.firestore.FieldValue.serverTimestamp()*/
         })
         .then( refDoc => {
             console.log(`Id del post => ${refDoc.id}`);
@@ -43,7 +42,7 @@ class Post {
                     post.data().descripcion,
                     post.data().videoLink,
                     post.data().imagenLink,
-                    Utilidad.obtenerFecha(post.data().fecha.toDate())
+                  /*  Utilidad.obtenerFecha(post.data().fecha.toDate())*/
                     
                 )
                 $('#posts').append(postHtml)
@@ -61,13 +60,13 @@ class Post {
             $('#posts').append(this.obtenerTemplatePostVacio())
         }else{
             querySnapshot.forEach(post => {
-                let postHtml = this.obtenerPostTemplate(
+                let postHtml = this.obtenerPostTemplatexUsuario(
                     post.data().autor,
                     post.data().titulo,
                     post.data().descripcion,
                     post.data().videoLink,
                     post.data().imagenLink,
-                    Utilidad.obtenerFecha(post.data().fecha.toDate())
+                /*    Utilidad.obtenerFecha(post.data().fecha.toDate())*/
                     
                 )
                 $('#posts').append(postHtml)
@@ -152,29 +151,27 @@ class Post {
                 </div>
             </article>`*/
             
-     return  `
-     <div class="col-md-6" style="margin-bottom: 20px" >
-     <div  style="background-color:#f5f5f5; border: 2px solid #f5f5f5; border-radius: 15px; padding: 50px;">
-                       
-     <div class="portfolio-container">
-         <div class="portfolio-details">
-             <a href="#">
-                 <h2>Keep Calm and Eat</h2>
-             </a>
-             <a href="#">
-                 <p>— App/Digital Product</p>
-             </a>
-         </div> 
-         <div>
-             <img  class="img-fluid" style="border-radius: 10px;" src="assets/images/pexel3.jpg" alt="">
+     return  ` <div class="col-md-6 content-main">
+     <div class="content-sec">                
+         <div class="portfolio-container">
+             <div class="portfolio-details">
+                 <a href="#">
+                    <h2>${titulo}</h2>
+                 </a>
+                 <a href="#">
+                    <p>— Autor: ${autor}</p>
+                 </a>
+             </div> 
+             <div>
+                 <img  class="img-fluid img-content" src="assets/images/pexel3.jpg" alt="">
+             </div>
+             
          </div>
-        
+         <div>
+             <h4>Mejorando la UI en la web</h4>
+             <p>${descripcion}/p>
+         </div>    
      </div>
-     <div>
-         <h3>Mejorando la UI en la web</h3>
-         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci optio fugit voluptate quas quibusdam, sed, inventore, dicta cupiditate fugiat libero deserunt facere tempore voluptates laudantium voluptatum? Ullam rem atque quis.</p>
-     </div>
- </div>
  </div>
  `
        
@@ -199,10 +196,54 @@ class Post {
   
 </div>`*/
 
+  obtenerPostTemplatexUsuario(
+    autor,
+    titulo,
+    descripcion,
+    videoLink,
+    imagenLink,
+    fecha
+   ) {
+    if (imagenLink) {
+      return 
+    } 
 
+    return  ` <div class="col-md-6 content-main">
+    <div class="content-sec">                
+        <div class="portfolio-container">
+            <div class="portfolio-details">
+                <a href="#">
+                   <h2>${titulo}</h2>
+                </a>
+                <a href="#">
+                   <p>— Autor: ${autor}</p>
+                </a>
+            </div> 
+            <div>
+                <img  class="img-fluid img-content" src="assets/images/pexel3.jpg" alt="">
+            </div>
+            
+        </div>
+        <div>
+            <h4>Mejorando la UI en la web</h4>
+            <p>${descripcion}</p>
+        </div>
+        <div class="content-miBoton">
+            <button type="button" class="miBoton btn btn-outline-primary">Actualizar</button>
+            <button type="button" class="miBoton btn btn-outline-light btn-delete">Eliminar</button>
+           <!-- <a class="btn-sm miBoton boton-Actualizar"  href="#" role="button">Actualizar</a>
+            <a class="btn-sm miBoton btn-light"  href="#" role="button">Eliminar</a> -->
+        </div>
+        
+    </div>
+</div>
+`
+
+  }
 
 
   obtenerPostPersonalizado(){
+
 
   }
 }

@@ -51,10 +51,10 @@
                         <a class="nav-link" href="#portfolio" id="btnMisPost">Mis Servicios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#testimonial">Comentarios</a>
+                        <a class="nav-link" href="#testimonial" id="comentarios">Comentarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contactanos</a>
+                        <a class="nav-link" href="#contact" id="contactanos">Contactanos</a>
                     </li>  
                 </ul>
                 <div>
@@ -81,14 +81,21 @@
     <section id="portfolio">
         <div class="container-fluid">
             <div class="content-center">
-                <h2>Trabajamos con marcas interesantes <b>y creamos excelentes productos</b></h2>
+                <h2 id="tituloPost">Trabajamos con marcas interesantes <b>y creamos excelentes productos</b></h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui ea consequuntur, odit veniam mollitia
                     aliquam reiciendis dignissimos, vitae sapiente neque, cum dolorum. Suscipit expedita obcaecati
                     nesciunt error ut quidem autem.</p>
             </div>
-            <div class="row" id="posts">
 
-             <!--  
+            <div>
+                <button type="button" class="miBotonAniadir btn btn-success " id="btnModalPost" >Añadir Servicio</button>
+            </div>
+
+            <div class="row" id="posts" >
+ 
+
+            <!-- 
+
                <div class="col-md-6">
                     <div class="portfolio-container">
                         <div class="portfolio-details">
@@ -141,6 +148,12 @@
                         <img src="assets/images/portfolio-04.jpg" class="img-fluid" alt="Portfolio 04">
                     </div>
                 </div> -->
+
+
+
+
+
+
             </div>
             <div class="text-center mt-4">
                 <p class="">Ready to accelerate your project?</p>
@@ -150,7 +163,7 @@
     </section>
 
     <section id="testimonial" class="divider">
-        <div class="container">
+        <div class="container" id="testimonial-container">
             <div class="content-center">
                 <h2>A few words from <b>our clients…</b></h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui ea consequuntur, odit veniam mollitia
@@ -253,7 +266,7 @@
   
 
     <section id="contact">
-        <div class="container">
+        <div class="container" id="contact-container">
             <div class="row">
                 <div class="col-md-6 mt-4">
                     <h3>Ready to accelerate your project? <b>just let us know.</b></h3>
@@ -289,7 +302,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <a href="" class="btn btn-primary full-width">Contact sales</a>
+                            <a href="#" class="btn btn-primary full-width">Contact sales</a>
                         </div>
                     </div>
                 </div>
@@ -387,10 +400,70 @@
     </div>
   </div> 
 
+
+
+
+
+    <!-- Modal Post -->
+    <div id="modalPost" class="modal modal-registro">
+        <div class="modal-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m6 registro-bienvenida">
+                        <h4>Realiza un Post</h4>
+                        <div class="registro-bienvenida-texto">
+                            Comparte un video interesante para la comunidad
+                        </div>
+                        <span>Comparte ahora</span>
+                    </div>
+                    <div class="col s12 m6 registro-formulario">
+                        <div class="input-field">
+                            <input id="tituloNewPost" type="text" maxlength="30" data-length="30" required />
+                            <label for="tituloNewPost">Titulo:</label>
+                        </div>
+                        <div class="input-field">
+                            <textarea id="descripcionNewPost" type="text"  maxlength="200" data-length="200" class="materialize-textarea" required></textarea>
+                            <label for="descripcionNewPost">Descripción:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="linkVideoNewPost" type="text" required />
+                            <label for="linkVideoNewPost">Enlace del video:</label>
+                        </div>
+                        <div class="progress-panel">
+                            <label for="btnUploadFile">Imagen:</label>
+                            <input type="file" value="upload" id="btnUploadFile" />
+                            <div class="progress">
+                                <div class="determinate" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="div-btnInicioSesion">
+                            <a id="btnRegistroPost" class="btn waves-effect waves-light">Crear Post<i class="material-icons left">create</i></a>
+                        </div>                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
+
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>

@@ -117,6 +117,61 @@ section { padding: 60px 0; }
     text-align: center;
 }
 
+.content-miBoton{
+    text-align: right;
+}
+.miBoton{
+    
+    /*margin-top: 5px;*/
+    font-size: 14px;
+    min-width: 0px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.miBotonAniadir{
+    
+    /*margin-top: 5px;*/
+    font-size: 14px;
+    min-width: 0px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.btn-delete{
+    color:#212529;
+}
+/*.boton-Actualizar{
+    background-color: #008CBA;
+    color:#fff;
+}
+.boton-eliminar{
+    background-color: #f8f9fa;
+    color:#212529;
+}*/
+
+
+
+.content-main{
+    margin-bottom: 20px;
+}
+
+.content-sec{
+    background-color:#f5f5f5; 
+    border: 2px solid #f5f5f5; 
+    border-radius: 15px; 
+    padding: 50px;
+}
+
+.img-content{
+    border-radius: 10px;
+}
+
+
+
 .full-width {
     width: 100%;
 }

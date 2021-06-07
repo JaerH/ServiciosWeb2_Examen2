@@ -1,6 +1,6 @@
 $(() => {
   $('.tooltipped').tooltip({ delay: 50 })
-  $('.modal').modal()
+  /*$('.modal').modal()*/
 
   // TODO: Adicionar el service worker
 
@@ -21,9 +21,6 @@ $(() => {
   const post = new Post();
   post.consultarTodosPost();
 
-
-  // TODO: Firebase observador del cambio de estado
-
   firebase.auth().onAuthStateChanged(user => {
 
       if(user){
@@ -32,25 +29,14 @@ $(() => {
           if(user.photoURL){
               $('#avatar').attr('src', user.photoURL)
           }else{
-              $('#avatar').attr('src', 'imagenes/usuario_auth.png')
+              $('#avatar').attr('src', 'assets/images/usuario_auth.png')
           }
       }else{
           $('#btnInicioSesion').text('Iniciar Sesión')
-          $('#avatar').attr('src', 'imagenes/usuario.png')
+          $('#avatar').attr('src', 'assets/images/usuario_auth.png')
       }
   })
 
-
-
-
-
-  //$('#btnInicioSesion').text('Salir')
-  //$('#avatar').attr('src', user.photoURL)
-  //$('#avatar').attr('src', 'imagenes/usuario_auth.png')
-  //$('#btnInicioSesion').text('Iniciar Sesión')
-  //$('#avatar').attr('src', 'imagenes/usuario.png')
-
-  // TODO: Evento boton inicio sesion
   $('#btnInicioSesion').click(() => {
 
       const user = firebase.auth().currentUser
@@ -63,7 +49,6 @@ $(() => {
         return firebase.auth().signOut()
         .then(() => {
             $('#avatar').attr('src', 'imagenes/usuario.png')
-           /* Materialize.toast(`Realizó un SignOut correcto`, 4000)*/
            Swal.fire({
             position: 'center',
             icon: 'success',
@@ -73,7 +58,6 @@ $(() => {
           })
         })
         .catch(error => {
-          /*Materialize.toast(`Error al realizar el SignOut ${error}`, 4000)*/
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -82,12 +66,6 @@ $(() => {
         })
 
       }
-
-
-
-    //$('#avatar').attr('src', 'imagenes/usuario.png')
-    // Materialize.toast(`Error al realizar SignOut => ${error}`, 4000)
-    
 
     $('#emailSesion').val('')
     $('#passwordSesion').val('')
@@ -98,7 +76,6 @@ $(() => {
       firebase.auth().signOut()
       .then(() => {
           $('#avatar').attr('src', 'imagenes/usuario.png')
-          /*Materialize.toast(`SignOut correcto`, 4000)*/
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -108,43 +85,50 @@ $(() => {
           })
       })
       .catch(error => {
-        /*Materialize.toast(`Error al realizar el SignOut ${error}`, 4000)*/
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: `Error al Cerrar Sesión`,
         })
       })
-
-    //$('#avatar').attr('src', 'imagenes/usuario.png')
-    //Materialize.toast(`SignOut correcto`, 4000)
   })
 
   $('#btnTodoPost').click(() => {
-   /* $('#tituloPost').text('Posts de la Comunidad') */
-    
+
     const post = new Post();
     post.consultarTodosPost();
+
+    $('#comentarios').show()
+    $('#contactanos').show()
+    $('#aniadir').hide()
+    $('#testimonial').show()
+    $('#contact').show()
+ 
   })
 
   $('#btnMisPost').click(() => {
       const user = firebase.auth().currentUser
-     
+      
       if(user){ 
+ 
+        $('#aniadir').show()
+        $('#tituloPost').text('Mis Servicios')
+        
         const post = new Post()
         post.consultarPostxUsuario(user.email)
-        $('#tituloPost').text('Mis Posts')
+        
+        $('#comentarios').hide()
+        $('#contactanos').hide()
+        $('#testimonial').hide()
+        $('#contact').hide()
         
       }else{
-        /*Materialize.toast(`Debes estar autenticado para ver tus posts`, 4000) */
+       
         Swal.fire({
           title: 'No estas Registrado',
           text: `Debes estar autenticado para ver tus Servicios`,
           icon: 'warning',
         })
-      }
-
-    //$('#tituloPost').text('Mis Posts')
-    //Materialize.toast(`Debes estar autenticado para ver tus posts`, 4000)    
+      }  
   })
 })

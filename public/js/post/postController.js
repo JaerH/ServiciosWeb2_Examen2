@@ -1,6 +1,21 @@
 $(() => {
   $('#btnModalPost').click(() => {
-    $('#tituloNewPost').val('')
+
+    const user = firebase.auth().currentUser
+
+    if(user == null){
+
+      Swal.fire({
+        title: 'No estas Registrado',
+        text: `Debes estar autenticado para añadir un Servicio`,
+        icon: 'warning',
+      })
+
+      $("#btnRegistroPost").attr("id","btnModalPost");
+      return
+    }else{
+      
+      $('#tituloNewPost').val('')
     $('#descripcionNewPost').val('')
     $('#linkVideoNewPost').val('')
     $('#btnUploadFile').val('')
@@ -11,19 +26,26 @@ $(() => {
 
     // Materialize.toast(`Para crear el post debes estar autenticado`, 4000)
 
-    $('#modalPost').modal('open')
+    $('#modalPost').modal('show')
+  }
   })
 
   $('#btnRegistroPost').click(() => {
     const post = new Post()
 
     // TODO: Validar que el usuario esta autenticado
-    const user = firebase.auth().currentUser
+    //const user = firebase.auth().currentUser
 
-    if(user == null){
-      Materialize.toast(`Para crear el post debes estar autenticado`, 4000)
+    /*if(user == null){
+      Swal.fire({
+        title: 'No estas Registrado',
+        text: `Debes estar autenticado para añadir un Servicio`,
+        icon: 'warning',
+      })
+
+      $("#btnRegistroPost").attr("id","btnModalPost");
       return 
-    }
+    }*/
 
     // Materialize.toast(`Para crear el post debes estar autenticado`, 4000)
 
@@ -44,11 +66,11 @@ $(() => {
         videoLink
       )
       .then(resp => {
-        Materialize.toast(`Post creado correctamente`, 2000)
+       // Materialize.toast(`Post creado correctamente`, 2000)
         $('.modal').modal('close')
       })
       .catch(err => {
-        Materialize.toast(`Error => ${err}`, 4000)
+      //  Materialize.toast(`Error => ${err}`, 4000)
       })
   })
 
