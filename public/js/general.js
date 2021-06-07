@@ -7,7 +7,6 @@ $(() => {
   // Init Firebase nuevamente
    // Initialize Firebase
    firebase.initializeApp(varConfig);
-   firebase.analytics();
 
   // TODO: Registrar LLave publica de messaging
 

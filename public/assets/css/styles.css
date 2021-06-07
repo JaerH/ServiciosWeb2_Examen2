@@ -290,7 +290,6 @@ section { padding: 60px 0; }
     position: absolute;
     bottom: 25px;
     left: 25px;
-    z-index: 9000;
 }
 
 .portfolio-details h2 {

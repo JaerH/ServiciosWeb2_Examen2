@@ -1,9 +1,8 @@
 var varConfig = {
-  apiKey: "AIzaSyBPh5K5J3aAf9cyGqxkU_dY0dkwyzexAXM",
-  authDomain: "servicioswebii.firebaseapp.com",
-  projectId: "servicioswebii",
-  storageBucket: "servicioswebii.appspot.com",
-  messagingSenderId: "787181881485",
-  appId: "1:787181881485:web:68d2437b1ad76343f0fac4",
-  measurementId: "G-4KBJG74JJ9"
+  apiKey: "AIzaSyCUddjOHd3r8wUgrUbQmrRPQxIYyBJvgqw",
+  authDomain: "examen-cl2-servicios-webii.firebaseapp.com",
+  projectId: "examen-cl2-servicios-webii",
+  storageBucket: "examen-cl2-servicios-webii.appspot.com",
+  messagingSenderId: "479538525999",
+  appId: "1:479538525999:web:f77894a7f75705bd8fd3da"
 };

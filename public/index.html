@@ -406,7 +406,7 @@
 
     <!-- Modal Post -->
     <div id="modalPost" class="modal modal-registro">
-        <div class="modal-content">
+        <div class="modal-content-post">
             <div class="container">
                 <div class="row">
                     <div class="col s12 m6 registro-bienvenida">
@@ -416,18 +416,18 @@
                         </div>
                         <span>Comparte ahora</span>
                     </div>
-                    <div class="col s12 m6 registro-formulario">
+                    <div class="registro-formulario">
                         <div class="input-field">
-                            <input id="tituloNewPost" type="text" maxlength="30" data-length="30" required />
                             <label for="tituloNewPost">Titulo:</label>
+                            <input id="tituloNewPost" type="text" maxlength="30" data-length="30" required />
                         </div>
                         <div class="input-field">
-                            <textarea id="descripcionNewPost" type="text"  maxlength="200" data-length="200" class="materialize-textarea" required></textarea>
                             <label for="descripcionNewPost">Descripción:</label>
+                            <textarea id="descripcionNewPost" type="text"  maxlength="200" data-length="200" class="materialize-textarea" required></textarea>
                         </div>
                         <div class="input-field">
-                            <input id="linkVideoNewPost" type="text" required />
                             <label for="linkVideoNewPost">Enlace del video:</label>
+                            <input id="linkVideoNewPost" type="text" required />
                         </div>
                         <div class="progress-panel">
                             <label for="btnUploadFile">Imagen:</label>
@@ -437,7 +437,7 @@
                             </div>
                         </div>
                         <div class="div-btnInicioSesion">
-                            <a id="btnRegistroPost" class="btn waves-effect waves-light">Crear Post<i class="material-icons left">create</i></a>
+                            <a id="btnRegistroPost" class="btn-crear-post">Crear Post</a>
                         </div>                      
                     </div>
                 </div>
@@ -470,7 +470,6 @@
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-analytics.js"></script>
 
 <!--Auth-->
 <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js"></script>
