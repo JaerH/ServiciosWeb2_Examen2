@@ -552,3 +552,9 @@ footer .list-inline .list-inline-item {
 
 @media (min-width: 1200px) {
 }
+
+#btnInicioSesion{
+  border-radius: .5rem;
+  font-weight: 700;
+  font-size: 18px;
+}
