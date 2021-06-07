@@ -41,7 +41,7 @@ class Autenticacion {
         });
 
         const configuracion = {
-          url: "http://localhost/Smart-Agency/public/",
+          url: "http://localhost/public/",
         };
 
         result.user.sendEmailVerification(configuracion).catch((error) => {

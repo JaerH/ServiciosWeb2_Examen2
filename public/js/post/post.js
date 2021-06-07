@@ -15,10 +15,10 @@ class Post {
         descripcion: descripcion,
         imagenLink: imagenLink,
         videoLink: videoLink,
-        /* fecha : firebase.firestore.FieldValue.serverTimestamp()*/
       })
       .then((refDoc) => {
         console.log(`Id del post => ${refDoc.id}`);
+        $(".modal").modal("hide");
       })
       .catch((error) => {
         console.error(`Error creando el post => ${error}`);
