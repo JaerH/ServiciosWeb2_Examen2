@@ -15,16 +15,14 @@ $(() => {
       return
     }else{
       
-      $('#tituloNewPost').val('')
+    $('#tituloNewPost').val('')
+    $('#tituloDescripcionNewPost').val('')
     $('#descripcionNewPost').val('')
-    $('#linkVideoNewPost').val('')
     $('#btnUploadFile').val('')
     $('.determinate').attr('style', `width: 0%`)
-    sessionStorage.setItem('imgNewPost', null)
+    /*sessionStorage.setItem('imgNewPost', null)*/
 
-    // TODO: Validar que el usuario esta autenticado
 
-    // Materialize.toast(`Para crear el post debes estar autenticado`, 4000)
 
     $('#modalPost').modal('show')
   }
@@ -33,25 +31,10 @@ $(() => {
   $('#btnRegistroPost').click(() => {
     const post = new Post()
 
-    // TODO: Validar que el usuario esta autenticado
-    //const user = firebase.auth().currentUser
-
-    /*if(user == null){
-      Swal.fire({
-        title: 'No estas Registrado',
-        text: `Debes estar autenticado para añadir un Servicio`,
-        icon: 'warning',
-      })
-
-      $("#btnRegistroPost").attr("id","btnModalPost");
-      return 
-    }*/
-
-    // Materialize.toast(`Para crear el post debes estar autenticado`, 4000)
     const user = firebase.auth().currentUser
     const titulo = $('#tituloNewPost').val()
+    const tituloDescripcion = $('#tituloDescripcionNewPost').val()
     const descripcion = $('#descripcionNewPost').val()
-    const videoLink = $('#linkVideoNewPost').val()
     const imagenLink = sessionStorage.getItem('imgNewPost') == 'null'
       ? null
       : sessionStorage.getItem('imgNewPost')
@@ -61,12 +44,11 @@ $(() => {
         user.uid,
         user.email,
         titulo,
+        tituloDescripcion,
         descripcion,
-        imagenLink,
-        videoLink
+        imagenLink
       )
       .then(resp => {
-       // Materialize.toast(`Post creado correctamente`, 2000)
        Swal.fire({
         position: 'center',
         icon: 'success',
@@ -74,21 +56,83 @@ $(() => {
         showConfirmButton: false,
         timer: 1500
       })
-        $('.modal').modal('close')
+        $('.modal').modal('hide')
       })
       .catch(err => {
-      //  Materialize.toast(`Error => ${err}`, 4000)
       })
   })
 
   $('#btnUploadFile').on('change', e => {
-    // TODO: Validar que el usuario esta autenticado
-
-    // Materialize.toast(`Para crear el post debes estar autenticado`, 4000)
 
     const file = e.target.files[0]
 
+    const user = firebase.auth().currentUser
+
+    const post = new Post()
+    post.subirImagenPost(file, user.uid)
+
     // TODO: Referencia al storage
     
+  }) 
+
+  
+
+  
+  $('#PostActualizar').click(() =>{
+
+    
+    let id = $('#servicio').closets('.oldPost').attr('id')
+    let titulo = $('#servicio').closets('.autor').text()
+    let tituloDescripcion = $('#servicio').closets('h4').text()
+    let descripcion = $('#servicio').closets('#descripcion').text()
+
+    $('#tituloNewPost1').val(titulo)
+    $('#tituloDescripcionNewPost1').val(tituloDescripcion)
+    $('#descripcionNewPost1').val(descripcion)
+
+    $('#modalPostActualizar').modal('show')
+
+
   })
+
+
+  $('#btnActualizaPost').click(() =>{
+
+      const db = firebase.database();
+      colleccionServicios = db.ref().child('posts')
+
+      let id = $('#id').val()
+      let titulo = $('#tituloNewPost').val()
+      let tituloDescripcion = $('#tituloDescripcionNewPost').val()
+      let descripcion = $('#descripcionNewPost').val()
+      let imagenLink = sessionStorage.getItem('imgNewPost') == 'null'
+                        ? null
+                        : sessionStorage.getItem('imgNewPost')
+
+      let idFirebase = id
+      if(idFirebase == ''){
+        idFirebase = colleccionServicios.push().key
+      }
+
+      data = {titulo : titulo,
+              tituloDescripcion : tituloDescripcion,
+              descripcion : descripcion,
+              imagenLink : imagenLink
+            }
+
+       actualizacionData = {}
+       actualizacionData[`/${idFirebase}`] = data     
+       colleccionServicios.update(actualizacionData)
+
+       id = '';
+          
+       $('#modalPostActualizar').modal('hide')
+
+  })  
+
+
+
+
+
+
 })

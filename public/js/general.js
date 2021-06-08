@@ -1,23 +1,8 @@
 $(() => {
   $('.tooltipped').tooltip({ delay: 50 })
-  /*$('.modal').modal()*/
 
-  // TODO: Adicionar el service worker
-
-  // Init Firebase nuevamente
-   // Initialize Firebase
    firebase.initializeApp(varConfig);
    firebase.analytics();
-
-  // TODO: Registrar LLave publica de messaging
-
-  // TODO: Solicitar permisos para las notificaciones
-
-  // TODO: Recibir las notificaciones cuando el usuario esta foreground
-
-  // TODO: Recibir las notificaciones cuando el usuario esta background
-
-  // TODO: Listening real time
   const post = new Post();
   post.consultarTodosPost();
 
@@ -29,11 +14,11 @@ $(() => {
           if(user.photoURL){
               $('#avatar').attr('src', user.photoURL)
           }else{
-              $('#avatar').attr('src', 'assets/images/usuario_auth.png')
+              $('#avatar').attr('src', 'assets/images/usuario_auth.jpg')                    
           }
       }else{
           $('#btnInicioSesion').text('Iniciar Sesión')
-          $('#avatar').attr('src', 'assets/images/usuario_auth.png')
+          $('#avatar').attr('src', 'assets/images/usuario_auth.jpg')
       }
   })
 
@@ -42,13 +27,20 @@ $(() => {
       const user = firebase.auth().currentUser
       const post = new Post();
       if(user){
+
+        $('#comentarios').show()
+        $('#contactanos').show()
         $('#btnInicioSesion').text('Iniciar Sesión')
+        const h2 = document.querySelector("#tituloPost");
+        h2.innerHTML = 'Trabajamos con marcas interesantes <b>y creamos excelentes productos</b>'
         
+
+
         post.consultarTodosPost();
 
         return firebase.auth().signOut()
         .then(() => {
-            $('#avatar').attr('src', 'imagenes/usuario.png')
+            $('#avatar').attr('src', 'assets/images/usuario.jpg')
            Swal.fire({
             position: 'center',
             icon: 'success',
@@ -75,7 +67,7 @@ $(() => {
   $('#avatar').click(() => {
       firebase.auth().signOut()
       .then(() => {
-          $('#avatar').attr('src', 'imagenes/usuario.png')
+          $('#avatar').attr('src', 'assets/images/usuario.jpg')
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -94,6 +86,10 @@ $(() => {
   })
 
   $('#btnTodoPost').click(() => {
+
+    const h2 = document.querySelector("#tituloPost");
+    h2.innerHTML = 'Trabajamos con marcas interesantes <b>y creamos excelentes productos</b>'
+    
 
     const post = new Post();
     post.consultarTodosPost();

@@ -4,6 +4,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+
 }
 
 /*body {
@@ -26,6 +27,14 @@
 }
 
 .cont {
+    /*border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    width: 900px;
+    height: 550px;
+    margin: 0 auto 100px;
+    background: #fff;
+    box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.3), 10px 10px 15px rgba(70, 70, 70, 0.15), inset -10px -10px 15px rgba(255, 255, 255, 0.3), inset 10px 10px 15px rgba(70, 70, 70, 0.15);*/
     border-radius: 20px;
     overflow: hidden;
     position: relative;
@@ -33,7 +42,10 @@
     height: 550px;
     margin: 0 auto 100px;
     background: #fff;
-    box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.3), 10px 10px 15px rgba(70, 70, 70, 0.15), inset -10px -10px 15px rgba(255, 255, 255, 0.3), inset 10px 10px 15px rgba(70, 70, 70, 0.15);
+    box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.3),
+      10px 10px 15px rgba(70, 70, 70, 0.15),
+      inset -10px -10px 15px rgba(255, 255, 255, 0.3),
+      inset 10px 10px 15px rgba(70, 70, 70, 0.15);
 }
 
 .form {
@@ -300,3 +312,36 @@
     transform: translate3d(0, 0, 0);
 }
  
+
+.modal-content-post {
+    background-color: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+  .registro-formulario {
+    display: grid;
+    gap: 1rem;
+    z-index: 8000;
+  }
+  .input-field {
+    display: flex;
+    flex-direction: column;
+  }
+  .input-field input,
+  .input-field textarea {
+    border-style: none;
+    border: 0.1px solid #000;
+  }
+  .btn-crear-post {
+    display: inline-block;
+    background-color: #455a81;
+    color: #fff !important;
+    padding: 12px 24px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }

@@ -4,8 +4,7 @@ class Autenticacion {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((result) => {       
         if (result.user.emailVerified){
-          $('#avatar').attr('src', 'imagenes/usuario_auth.png')
-          /*Materialize.toast(`Bienvenido ${result.user.displayName}`, 5000)*/
+          $('#avatar').attr('src', 'assets/images/usuario_auth.jpg')
           console.log("se ha registrado");
           Swal.fire({
             position: 'center',
@@ -18,7 +17,6 @@ class Autenticacion {
         }
         else{
           firebase.auth().signOut();
-          /*Materialize.toast(`¡Debes realizar el proceso de verificación!`, 5000)*/
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
@@ -28,20 +26,15 @@ class Autenticacion {
         }    
       })
       .catch((error) => {
-        /*var errorCode = error.code;
-        var errorMessage = error.message;*/
         Swal.fire({
           icon: 'error',
           title: 'Email inválido',
           text: error.code,
         })
     });
+    
+    $('.modal').modal('hide')
 
-   /* $('.modal').modal('hide')*/
-
-    //$('#avatar').attr('src', 'imagenes/usuario_auth.png')
-    //Materialize.toast(`Bienvenido ${result.user.displayName}`, 5000)
-    //$('.modal').modal('close')
    
   }
 
@@ -60,7 +53,6 @@ class Autenticacion {
                result.user.sendEmailVerification(configuracion)
                .catch(error => {
                  console.error(error)
-                 /*Materialize.toast(error.message, 4000)*/
                  Swal.fire({
                   icon: 'error',
                   title: 'Error al enviar el email de verificación',
@@ -69,7 +61,6 @@ class Autenticacion {
                 })
 
                  firebase.auth().signOut()
-                 /*Materialize.toast(`Bienvenido ${nombres}, debes realizar el proceso de verificación!`, 4000)*/
 
                  Swal.fire(
                   'Usuario Registrado!',
@@ -77,26 +68,19 @@ class Autenticacion {
                   'success'
                 )
 
-                 $('.modal').modal('hide')
+                 
               
             })
             .catch(error => {
                 console.error(error)
-               /* Materialize.toast(error.message, 4000)*/
                Swal.fire({
                 icon: 'error',
                 title: 'Usuario no Registrado',
                 text: error.message,
               })
             })
+            $('.modal').modal('hide')
 
-           
-    /*Materialize.toast(
-      `Bienvenido ${nombres}, debes realizar el proceso de verificación`,
-      4000
-    )
-
-    $('.modal').modal('close')*/
     
   }
 
@@ -108,7 +92,7 @@ class Autenticacion {
       .then(result => {
          $('#avatar').attr('src', result.user.photoURL)
          $('.modal').modal('hide')
-         /*Materialize.toast(`Bienvenido ${result.user.displayName} !! `, 4000)*/
+        
          Swal.fire({
           position: 'center',
           icon: 'success',
@@ -119,7 +103,7 @@ class Autenticacion {
       })
       .catch(error => {
         console.error(error);
-        /*Materialize.toast(`Error al autenticarse con Google: ${error}` , 4000)*/
+
         Swal.fire({
           icon: 'error',
           title: `Error al autenticarse con Google: ${error}`,
@@ -127,9 +111,6 @@ class Autenticacion {
         })
       })
 
-    //$('#avatar').attr('src', result.user.photoURL)
-    //$('.modal').modal('close')
-    //Materialize.toast(`Bienvenido ${result.user.displayName} !! `, 4000)
   }
 
   authCuentaFacebook () {
@@ -140,7 +121,6 @@ class Autenticacion {
       //$('#avatar').attr('src', result.additionalUserInfo.profile.picture.data.url); en caso no se muestre la imagen al autenticarse con facebook
       $('#avatar').attr('src', result.user.photoURL)
       $('.modal').modal('hide')
-      /*Materialize.toast(`Bienvenido ${result.user.displayName} !! `, 4000)*/
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -151,19 +131,15 @@ class Autenticacion {
    })
    .catch(error => {
     console.error(error);
-    /*Materialize.toast(`Error al autenticarse con Facebook: ${error}` , 4000)*/
     Swal.fire({
       icon: 'error',
       title: `Error al autenticarse con Facebook: ${error}`,
       text: 'error.message',
     })
   })
-    //$('#avatar').attr('src', result.user.photoURL)
-    //$('.modal').modal('close')
-    //Materialize.toast(`Bienvenido ${result.user.displayName} !! `, 4000)
+    
   }
 
   authTwitter () {
-    // TODO: Crear auth con twitter
   }
 }

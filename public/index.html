@@ -92,67 +92,6 @@
             </div>
 
             <div class="row" id="posts" >
- 
-
-            <!-- 
-
-               <div class="col-md-6">
-                    <div class="portfolio-container">
-                        <div class="portfolio-details">
-                            <a href="#">
-                                <h2>Keep Calm and Eat</h2>
-                            </a>
-                            <a href="#">
-                                <p>— App/Digital Product</p>
-                            </a>
-                        </div>
-                        <img src="assets/images/portfolio-01.jpg" class="img-fluid" alt="Portfolio 01">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="portfolio-container">
-                        <div class="portfolio-details">
-                            <a href="#">
-                                <h2>New Horizons</h2>
-                            </a>
-                            <a href="#">
-                                <p>— App/Digital Product</p>
-                            </a>
-                        </div>
-                        <img src="assets/images/portfolio-02.jpg" class="img-fluid" alt="Portfolio 02">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="portfolio-container">
-                        <div class="portfolio-details">
-                            <a href="#">
-                                <h2>Urban Oasis</h2>
-                            </a>
-                            <a href="#">
-                                <p>— App/Digital Product</p>
-                            </a>
-                        </div>
-                        <img src="assets/images/portfolio-03.jpg" class="img-fluid" alt="Portfolio 03">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="portfolio-container">
-                        <div class="portfolio-details">
-                            <a href="#">
-                                <h2>No Speed Limits</h2>
-                            </a>
-                            <a href="#">
-                                <p>— App/Digital Product</p>
-                            </a>
-                        </div>
-                        <img src="assets/images/portfolio-04.jpg" class="img-fluid" alt="Portfolio 04">
-                    </div>
-                </div> -->
-
-
-
-
-
 
             </div>
             <div class="text-center mt-4">
@@ -328,7 +267,7 @@
                 <li class="list-inline-item"><a href="#"><img src="assets/images/dribbble.svg" class="img-fluid"></a></li>
                 <li class="list-inline-item"><a href="#"><img src="assets/images/facebook.svg" class="img-fluid"></a></li>
             </ul>
-            <small>©2020 All Rights Reserved. Created by <span>Rodrigo Herrada</span></small>
+            <small>©2021 All Rights Reserved. Created by <span>Rodrigo Herrada</span></small>
         </div>
     </footer>
 
@@ -352,8 +291,6 @@
                 </label>
                 <p class="forgot-pass">Forgot password?</p>
                 <a  class="btn submit boton btn-mod" id="btnInicioEmail">Sign In</a>
-               <!--- <button type="button" class="submit boton">Sign In</button> -->
-               <!--- <button type="button" class="fb-btn boton">Connect with <span class="spn">facebook</span></button> -->
                 <p style="text-align: center;">Ingresa con:</p>
                 <div class="registro-iconos-redes">                                          
                     <a id="authFB" class="logo-facebook" href="#"></a>
@@ -391,8 +328,6 @@
                         <input type="password" class="foco" id="passwordReg" />
                     </label>
                     <a  class="btn submit boton btn-mod" id="btnRegistroEmail">Sign Up</a>
-                   <!-- <button type="button" id="btnRegistroEmail" class="submit boton">Sign Up</button> -->
-                   <!--  <button type="button" class="fb-btn boton">Join with <span class="spn">facebook</span></button> -->
                 </div>
             </div>
         </div>
@@ -406,7 +341,7 @@
 
     <!-- Modal Post -->
     <div id="modalPost" class="modal modal-registro">
-        <div class="modal-content">
+        <div class="modal-content-post">
             <div class="container">
                 <div class="row">
                     <div class="col s12 m6 registro-bienvenida">
@@ -416,18 +351,18 @@
                         </div>
                         <span>Comparte ahora</span>
                     </div>
-                    <div class="col s12 m6 registro-formulario">
+                    <div class="registro-formulario">
                         <div class="input-field">
                             <input id="tituloNewPost" type="text" maxlength="30" data-length="30" required />
-                            <label for="tituloNewPost">Titulo:</label>
+                            <label for="tituloNewPost">Titulo del Servicio:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="tituloDescripcionNewPost" type="text" maxlength="30" data-length="30" required />
+                            <label for="tituloDescripcionNewPost">Titulo de la Descripción:</label>
                         </div>
                         <div class="input-field">
                             <textarea id="descripcionNewPost" type="text"  maxlength="200" data-length="200" class="materialize-textarea" required></textarea>
                             <label for="descripcionNewPost">Descripción:</label>
-                        </div>
-                        <div class="input-field">
-                            <input id="linkVideoNewPost" type="text" required />
-                            <label for="linkVideoNewPost">Enlace del video:</label>
                         </div>
                         <div class="progress-panel">
                             <label for="btnUploadFile">Imagen:</label>
@@ -437,7 +372,49 @@
                             </div>
                         </div>
                         <div class="div-btnInicioSesion">
-                            <a id="btnRegistroPost" class="btn waves-effect waves-light">Crear Post<i class="material-icons left">create</i></a>
+                            <a id="btnRegistroPost" class="btn-crear-post">Crear Post</a>
+                        </div>                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="modalPostActualizar" class="modal modal-registro">
+        <div class="modal-content-post">
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m6 registro-bienvenida">
+                        <h4>Realiza un Post</h4>
+                        <div class="registro-bienvenida-texto">
+                            Comparte un video interesante para la comunidad
+                        </div>
+                        <span>Comparte ahora</span>
+                    </div>
+                    <div class="registro-formulario">
+                        <div class="input-field">
+                            <input id="tituloNewPost1" type="text" maxlength="30" data-length="30" required />
+                            <label for="tituloNewPost1">Titulo del Servicio:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="tituloDescripcionNewPost1" type="text" maxlength="30" data-length="30" required />
+                            <label for="tituloDescripcionNewPost1">Titulo de la Descripción:</label>
+                        </div>
+                        <div class="input-field">
+                            <textarea id="descripcionNewPost1" type="text"  maxlength="200" data-length="200" class="materialize-textarea" required></textarea>
+                            <label for="descripcionNewPost1">Descripción:</label>
+                        </div>
+                        <div class="progress-panel">
+                            <label for="btnUploadFile1">Imagen:</label>
+                            <input type="file" value="upload" id="btnUploadFile" />
+                            <div class="progress">
+                                <div class="determinate" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="div-btnInicioSesion">
+                            <a id="btnActualizaPost" class="btn-crear-post">Actualizar Post</a>
                         </div>                      
                     </div>
                 </div>
@@ -478,6 +455,9 @@
 
 <!-- sdk de firestore-->
 <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
+<!-- sdk de storage-->
+<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-storage.js"></script>
 
 <!--build:js js/main.min.js -->
 <script type="text/javascript" src="js/config/ConfigFirebase.js"></script>
